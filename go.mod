@@ -1,4 +1,4 @@
-module github.com/chao-mt4-rm/utils
+module github.com/mt4-rm/utils
 
 go 1.16
 
