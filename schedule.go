@@ -24,14 +24,16 @@ func SetTicker(ctx context.Context, env string, action fn) {
 		log.Fatal().Err(err).Msgf("Read Env | %s | Fail", env)
 	}
 	ticker := time.NewTicker(time.Second * time.Duration(frequency))
-	for {
-		select {
-		case <-ticker.C:
-			action()
-		case <-ctx.Done():
-			return
+	go func() {
+		for {
+			select {
+			case <-ticker.C:
+				action()
+			case <-ctx.Done():
+				return
+			}
 		}
-	}
+	}()
 }
 
 func AddSchedule(sc map[string]*cron.Cron, name, timeFormat string, action fn) {
