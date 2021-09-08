@@ -92,11 +92,6 @@ func GetRelativeEpoch(hour, min, sec int32) int32 {
 	return hour*3600 + min*60 + sec
 }
 
-
 func TrimEpochDate(epoch int64) int {
-	date := EpochToDate(epoch)
-	h := date.Hour()
-	m := date.Minute()
-	s := date.Second()
-	return h*60*60 + m*60 + s
+	return int(epoch) % 86400
 }
