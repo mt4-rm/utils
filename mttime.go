@@ -33,6 +33,15 @@ func GetLocaltion() *time.Location {
 	return location
 }
 
+func NewYorkTime() time.Time {
+	location, errt := tz.LoadLocation("America/New_York")
+	if errt != nil {
+		fmt.Println(errt)
+	}
+	t := time.Now()
+	return t.In(location)
+}
+
 func MTTime() time.Time {
 	location, errt := tz.LoadLocation("America/New_York")
 	if errt != nil {

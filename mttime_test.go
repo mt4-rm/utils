@@ -24,3 +24,7 @@ func TestConverToMT4Date(t *testing.T) {
 	}
 
 }
+
+func TestMTTime(t *testing.T) {
+	fmt.Println(NewYorkTime())
+}
