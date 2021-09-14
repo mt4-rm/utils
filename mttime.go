@@ -104,3 +104,7 @@ func GetRelativeEpoch(hour, min, sec int32) int32 {
 func TrimEpochDate(epoch int64) int {
 	return int(epoch) % 86400
 }
+
+func StripEpochTime(epoch int64) int {
+	return epoch - int(epoch) % 86400
+}
