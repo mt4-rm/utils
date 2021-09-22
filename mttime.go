@@ -57,7 +57,7 @@ func MTEpoch() int64 {
 }
 
 func EpochToDate(epoch int64) time.Time {
-	return time.Unix(epoch, 0)
+	return time.Unix(epoch, 0).UTC()
 }
 
 // epoch of today date
