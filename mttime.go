@@ -108,3 +108,10 @@ func TrimEpochDate(epoch int64) int {
 func StripEpochTime(epoch int64) int64 {
 	return epoch - epoch%86400
 }
+
+func SameDay(date time.Time, year, month, day int32) bool {
+	if date.Year() == int(year) && int(date.Month()) == int(month) && date.Day() == int(day) {
+		return true
+	}
+	return false
+}
