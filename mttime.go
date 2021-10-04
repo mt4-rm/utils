@@ -60,6 +60,10 @@ func EpochToDate(epoch int64) time.Time {
 	return time.Unix(epoch, 0).UTC()
 }
 
+func EpochToDateStr(epoch int64) string {
+	return time.Unix(epoch, 0).UTC().Format("2006-01-02")
+}
+
 // epoch of today date
 func MTDateEpoch() int64 {
 	layout := "2006-01-02"

@@ -1,14 +1,12 @@
 package utils
 
 import (
-	"fmt"
 	"testing"
 	"time"
 )
 
 func TestConverToMT4Date(t *testing.T) {
 	location, _ := time.LoadLocation("Australia/Sydney")
-	fmt.Println(time.Now())
 	layout := "2006-01-02 15:04:05"
 	tables := []struct {
 		testTime time.Time
@@ -41,6 +39,23 @@ func TestEpochToDate(t *testing.T) {
 	}
 }
 
+func TestEpochToDateStr(t *testing.T) {
+	tables := []struct {
+		epoch    int64
+		expected string
+	}{
+		{1633046399, "2021-09-30"},
+		{1633046400, "2021-10-01"},
+	}
+
+	for _, table := range tables {
+		answer := EpochToDateStr(table.epoch)
+		if answer != table.expected {
+			t.Errorf("test epoch to date str failed. answer: %s expectedL %s", answer, table.expected)
+		}
+	}
+}
+
 func TestMTTime(t *testing.T) {
-	fmt.Println(NewYorkTime())
+
 }
