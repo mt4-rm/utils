@@ -1,4 +1,4 @@
-package utils
+package time
 
 import (
 	"context"
@@ -48,7 +48,6 @@ func AddSchedule(sc map[string]*cron.Cron, name, timeFormat string, action fn) {
 	})
 	sc[name].Start()
 }
-
 
 func MonitorStopCron(ctx context.Context, sc map[string]*cron.Cron) {
 	go func() {

@@ -1,4 +1,4 @@
-package utils
+package number
 
 import "math"
 
@@ -8,4 +8,3 @@ func RoundT4(number float64) float64 {
 func RoundT2(number float64) float64 {
 	return math.Round(number*100) / 100
 }
-
