@@ -2,8 +2,6 @@ package time
 
 import (
 	"context"
-	"os"
-	"strconv"
 	"time"
 
 	"4d63.com/tz"
@@ -13,16 +11,13 @@ import (
 
 type fn func()
 
-func SetTicker(ctx context.Context, env string, action fn) {
-	frequencyStr := os.Getenv(env)
-	frequency, err := strconv.Atoi(frequencyStr)
-	if frequency == 0 {
+func SetTicker(ctx context.Context, eventName string, frequency int, action fn) {
+
+	if frequency <= 0 {
 		return
 	}
-	log.Info().Msgf("Config | %s | %ds", env, frequency)
-	if err != nil {
-		log.Fatal().Err(err).Msgf("Read Env | %s | Fail", env)
-	}
+	log.Info().Msgf("set ticker | %s | %ds", eventName, frequency)
+
 	ticker := time.NewTicker(time.Second * time.Duration(frequency))
 	go func() {
 		for {
