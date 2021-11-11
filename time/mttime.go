@@ -65,8 +65,12 @@ func MTEpoch() int64 {
 	return MTTime().Unix() + int64(off)
 }
 
-func EpochToDate(epoch int64) time.Time {
+func EpochToTime(epoch int64) time.Time {
 	return time.Unix(epoch, 0).UTC()
+}
+
+func EpochToTimeStr(epoch int64) string {
+	return time.Unix(epoch, 0).UTC().Format("2006-01-02 15:04:05")
 }
 
 func EpochToDateStr(epoch int64) string {
