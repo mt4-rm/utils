@@ -51,6 +51,15 @@ func MTTime() time.Time {
 	return t.In(location).Add(time.Hour * 7)
 }
 
+func MTTimeStr() string {
+	location, errt := tz.LoadLocation("America/New_York")
+	if errt != nil {
+		fmt.Println(errt)
+	}
+	t := time.Now()
+	return t.In(location).Add(time.Hour * 7).Format("2006-01-02 15:04:05")
+}
+
 func MTEpoch() int64 {
 	_, off := MTTime().Zone()
 	return MTTime().Unix() + int64(off)
