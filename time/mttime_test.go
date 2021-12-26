@@ -32,7 +32,7 @@ func TestEpochToDate(t *testing.T) {
 		{1632302747, "2021-09-22 09:25:47"},
 	}
 	for index, table := range tables {
-		result := EpochToDate(table.epoch)
+		result := EpochToTime(table.epoch)
 		if result.Format("2006-01-02 15:04:05") != table.answer {
 			t.Errorf("test case %d failed. answer: %s expected: %s\n", index+1, result, table.answer)
 		}
