@@ -162,3 +162,12 @@ func TimeStrToEpoch(date string) int64 {
 	}
 	return t.Unix()
 }
+
+// func TimeToTimeStr(date time.Time) string {
+
+// }
+
+func TimeToEpoch(date time.Time) int64 {
+	str := date.Format("2006-01-02 15:04:05")
+	return TimeStrToEpoch(str)
+}
