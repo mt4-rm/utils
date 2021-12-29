@@ -25,7 +25,7 @@ func TransformDotSeparateStrToSQLQuery(col, condition string) string {
 		partsStr := strings.Join(parts, ",")
 		part = "(" + partsStr + ")"
 	} else {
-		part = "(" + part + ")"
+		part = fmt.Sprintf("('%s')", condition)
 	}
 	return fmt.Sprintf("%s in %s", col, part)
 }

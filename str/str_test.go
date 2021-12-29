@@ -21,6 +21,11 @@ func TestTransformDotSeparateStrToSQLQuery(t *testing.T) {
 			"SYMBOL in ('AUDUSD','XAUUSD','GBPJPY')",
 		},
 		{
+			"SYMBOL",
+			"AUDUSD",
+			"SYMBOL in ('AUDUSD')",
+		},
+		{
 			"`GROUP`",
 			"S_STD_USD,M_STD_USD",
 			"`GROUP` in ('S_STD_USD','M_STD_USD')",
