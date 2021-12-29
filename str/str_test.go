@@ -1,7 +1,6 @@
 package str
 
 import (
-	"fmt"
 	"testing"
 )
 
@@ -19,12 +18,12 @@ func TestTransformDotSeparateStrToSQLQuery(t *testing.T) {
 		{
 			"SYMBOL",
 			"AUDUSD,XAUUSD,GBPJPY",
-			"BOOK in ('AUDUSD','XAUUSD','GBPJPY')",
+			"SYMBOL in ('AUDUSD','XAUUSD','GBPJPY')",
 		},
 		{
 			"`GROUP`",
 			"S_STD_USD,M_STD_USD",
-			"BOOK in ('S_STD_USD','M_STD_USD')",
+			"`GROUP` in ('S_STD_USD','M_STD_USD')",
 		},
 		{
 			"CMD",
@@ -36,7 +35,7 @@ func TestTransformDotSeparateStrToSQLQuery(t *testing.T) {
 	for _, table := range tables {
 		result := TransformDotSeparateStrToSQLQuery(table.col, table.input)
 		if result != table.answer {
-			fmt.Println(result)
+			t.Error(result)
 		}
 	}
 }
