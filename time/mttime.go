@@ -133,8 +133,18 @@ func SameDay(date time.Time, year, month, day int32) bool {
 	return false
 }
 
-func DateToTime(date string) time.Time {
+func DateStrToDate(date string) time.Time {
 	layout := "2006-01-02"
+	t, err := time.Parse(layout, date)
+
+	if err != nil {
+		fmt.Println(err)
+	}
+	return t
+}
+
+func TimeStrToTime(date string) time.Time {
+	layout := "2006-01-02 15:04:05"
 	t, err := time.Parse(layout, date)
 
 	if err != nil {

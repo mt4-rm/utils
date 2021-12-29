@@ -18,7 +18,7 @@ func TestTransformDotSeparateStrToSQLQuery(t *testing.T) {
 		{
 			"SYMBOL",
 			"AUDUSD,XAUUSD,GBPJPY",
-			`SYMBOL like '%AUDUSD%' OR SYMBOL like '%XAUUSD%' OR SYMBOL like '%GBPJPY%'`,
+			`(SYMBOL like '%AUDUSD%' OR SYMBOL like '%XAUUSD%' OR SYMBOL like '%GBPJPY%')`,
 		},
 		{
 			"SYMBOL",
