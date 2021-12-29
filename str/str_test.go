@@ -13,13 +13,23 @@ func TestTransformDotSeparateStrToSQLQuery(t *testing.T) {
 	}{
 		{
 			"BOOK",
-			"'B','S','TEST'",
+			"B,S,TEST",
 			"BOOK in ('B','S','TEST')",
 		},
 		{
+			"SYMBOL",
+			"AUDUSD,XAUUSD,GBPJPY",
+			"BOOK in ('AUDUSD','XAUUSD','GBPJPY')",
+		},
+		{
+			"`GROUP`",
+			"S_STD_USD,M_STD_USD",
+			"BOOK in ('S_STD_USD','M_STD_USD')",
+		},
+		{
 			"CMD",
-			"'1','0','2'",
-			"CMD in ('1','0','2')",
+			"1,0,2",
+			"CMD in (1,0,2)",
 		},
 	}
 

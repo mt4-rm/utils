@@ -17,6 +17,11 @@ func TransformDotSeparateStrToSQLQuery(col, condition string) string {
 	part := ""
 	if strings.Contains(condition, ",") {
 		parts := strings.Split(condition, ",")
+		if col == "`GROUP`" || col == "SYMBOL" || col == "BOOK" {
+			for i, str := range parts {
+				parts[i] = fmt.Sprintf("'%s'", str)
+			}
+		}
 		partsStr := strings.Join(parts, ",")
 		part = "(" + partsStr + ")"
 	} else {
