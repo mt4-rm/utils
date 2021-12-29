@@ -26,7 +26,7 @@ func TransformDotSeparateStrToSQLQuery(col, condition string) string {
 				parts[i] = fmt.Sprintf("%s like '%%%s%%'", col, str)
 			}
 			partsStr := strings.Join(parts, " OR ")
-			return partsStr
+			return fmt.Sprintf("(%s)", partsStr)
 		}
 		partsStr := strings.Join(parts, ",")
 		part = "(" + partsStr + ")"
