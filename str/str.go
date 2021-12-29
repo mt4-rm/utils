@@ -17,15 +17,26 @@ func TransformDotSeparateStrToSQLQuery(col, condition string) string {
 	part := ""
 	if strings.Contains(condition, ",") {
 		parts := strings.Split(condition, ",")
-		if col == "`GROUP`" || col == "SYMBOL" || col == "BOOK" {
+		if col == "`GROUP`" || col == "BOOK" {
 			for i, str := range parts {
 				parts[i] = fmt.Sprintf("'%s'", str)
 			}
+		} else if col == "SYMBOL" {
+			for i, str := range parts {
+				parts[i] = fmt.Sprintf("%s like '%%%s%%'", col, str)
+			}
+			partsStr := strings.Join(parts, " OR ")
+			return partsStr
 		}
 		partsStr := strings.Join(parts, ",")
 		part = "(" + partsStr + ")"
 	} else {
-		part = fmt.Sprintf("('%s')", condition)
+		if col == "SYMBOL" {
+			return fmt.Sprintf("%s like '%%%s%%'", col, condition)
+		} else {
+			part = fmt.Sprintf("('%s')", condition)
+		}
+
 	}
 	return fmt.Sprintf("%s in %s", col, part)
 }
