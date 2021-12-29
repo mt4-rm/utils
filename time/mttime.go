@@ -152,3 +152,13 @@ func TimeStrToTime(date string) time.Time {
 	}
 	return t
 }
+
+func TimeStrToEpoch(date string) int64 {
+	layout := "2006-01-02 15:04:05"
+	t, err := time.Parse(layout, date)
+
+	if err != nil {
+		fmt.Println(err)
+	}
+	return t.Unix()
+}
