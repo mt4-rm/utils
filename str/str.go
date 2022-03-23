@@ -3,6 +3,7 @@ package str
 import (
 	"fmt"
 	"regexp"
+	"strconv"
 	"strings"
 )
 
@@ -39,4 +40,30 @@ func TransformDotSeparateStrToSQLQuery(col, condition string) string {
 
 	}
 	return fmt.Sprintf("%s in %s", col, part)
+}
+
+func ToInt64List(str string, sep string) ([]int64, error) {
+	result := make([]int64, 0)
+	strList := strings.Split(str, sep)
+	for _, v := range strList {
+		intValue, err := strconv.Atoi(v)
+		if err != nil {
+			return nil, err
+		}
+		result = append(result, int64(intValue))
+	}
+	return result, nil
+}
+
+func ToIntList(str string, sep string) ([]int, error) {
+	result := make([]int, 0)
+	strList := strings.Split(str, sep)
+	for _, v := range strList {
+		intValue, err := strconv.Atoi(v)
+		if err != nil {
+			return nil, err
+		}
+		result = append(result, intValue)
+	}
+	return result, nil
 }
