@@ -67,3 +67,25 @@ func ToIntList(str string, sep string) ([]int, error) {
 	}
 	return result, nil
 }
+
+func IntListToStr(intList []int) string {
+	result := ""
+	for _, v := range intList {
+		if len(result) > 0 {
+			result += ","
+		}
+		result += strconv.Itoa(v)
+	}
+	return result
+}
+
+func Int64ListToStr(intList []int64) string {
+	result := ""
+	for _, v := range intList {
+		if len(result) > 0 {
+			result += ","
+		}
+		result += strconv.Itoa(int(v))
+	}
+	return result
+}
