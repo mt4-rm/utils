@@ -32,6 +32,9 @@ func TransformDotSeparateStrToSQLQuery(col, condition string) string {
 		partsStr := strings.Join(parts, ",")
 		part = "(" + partsStr + ")"
 	} else {
+		if col == "t.VOLUME" {
+			return fmt.Sprintf("%s >= %s", col, condition)
+		}
 		if col == "SYMBOL" {
 			return fmt.Sprintf("%s like '%%%s%%'", col, condition)
 		} else {
