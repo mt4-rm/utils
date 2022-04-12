@@ -7,6 +7,11 @@ import (
 	"strings"
 )
 
+func CheckRegex(regex string, target string) bool {
+	r, _ := regexp.Compile(regex)
+	return r.MatchString(target)
+}
+
 func ExtractSymbolSuffix(symbol string) string {
 	re := regexp.MustCompile(`[A-Z0-9]+`)
 	main := re.FindString(symbol)
