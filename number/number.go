@@ -3,6 +3,8 @@ package number
 import (
 	"math"
 	"sort"
+
+	timeUtils "github.com/mt4-rm/utils/time"
 )
 
 func RoundT4(number float64) float64 {
@@ -47,5 +49,16 @@ func SortStrIntMapByValue(input map[string]int) []string {
 	for i, value := range p {
 		result[i] = value.Key
 	}
+	return result
+}
+
+func SortDateStrFloat64Map(input map[string]float64) []string {
+	result := make([]string, 0)
+	for k := range input {
+		result = append(result, k)
+	}
+	sort.SliceStable(result, func(i, j int) bool {
+		return timeUtils.DateStrToDate(result[i]).Before(timeUtils.DateStrToDate(result[j]))
+	})
 	return result
 }
