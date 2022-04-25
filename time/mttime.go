@@ -171,3 +171,13 @@ func TimeToEpoch(date time.Time) int64 {
 	str := date.Format("2006-01-02 15:04:05")
 	return TimeStrToEpoch(str)
 }
+
+func InTimeSpan(start, end, check time.Time) bool {
+	if start.Before(end) {
+		return !check.Before(start) && !check.After(end)
+	}
+	if start.Equal(end) {
+		return check.Equal(start)
+	}
+	return !start.After(check) || !end.Before(check)
+}
