@@ -181,3 +181,9 @@ func InTimeSpan(start, end, check time.Time) bool {
 	}
 	return !start.After(check) || !end.Before(check)
 }
+
+func HMSStrToHMS(timeStr string) time.Time {
+	newLayout := "15:04"
+	result, _ := time.Parse(newLayout, timeStr)
+	return result
+}
