@@ -184,6 +184,9 @@ func InTimeSpan(start, end, check time.Time) bool {
 
 func HMSStrToHMS(timeStr string) time.Time {
 	newLayout := "15:04"
-	result, _ := time.Parse(newLayout, timeStr)
+	result, err := time.Parse(newLayout, timeStr)
+	if err != nil {
+		fmt.Println("can not parse  ", timeStr)
+	}
 	return result
 }
