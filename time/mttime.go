@@ -3,6 +3,7 @@ package time
 import (
 	"fmt"
 	"os"
+	"strings"
 	"time"
 
 	"github.com/rs/zerolog/log"
@@ -154,6 +155,9 @@ func TimeStrToTime(date string) time.Time {
 }
 
 func TimeStrToEpoch(date string) int64 {
+	if strings.Contains(date, "T") {
+		date = date[0:10] + " " + date[11:19]
+	}
 	layout := "2006-01-02 15:04:05"
 	t, err := time.Parse(layout, date)
 

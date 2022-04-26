@@ -56,6 +56,22 @@ func TestEpochToDateStr(t *testing.T) {
 	}
 }
 
+func TestTimeStrToEpoch(t *testing.T) {
+	tables := []struct {
+		date   string
+		answer int64
+	}{
+		{"2022-04-25T13:38:03+10:00", 1650893883},
+		{"2022-04-25T19:38:03+10:00", 1650915483},
+		{"2022-04-25 13:38:03", 1650893883},
+	}
+	for _, table := range tables {
+		result := TimeStrToEpoch(table.date)
+		if result != table.answer {
+			t.Errorf("incorrect result: %d expected: %d", result, table.answer)
+		}
+	}
+}
 func TestInTimeSpan(t *testing.T) {
 	tables := []struct {
 		start  string
