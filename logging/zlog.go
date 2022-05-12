@@ -56,7 +56,7 @@ func Configure(config Config) *Logger {
 	mw := io.MultiWriter(writers...)
 
 	// zerolog.SetGlobalLevel(zerolog.DebugLevel)
-	logger := zerolog.New(mw).With().Timestamp().Logger()
+	logger := zerolog.New(mw).With().Caller().Timestamp().Logger()
 
 	logger.Info().
 		Bool("fileLogging", config.FileLoggingEnabled).
