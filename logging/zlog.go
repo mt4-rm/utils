@@ -4,6 +4,7 @@ import (
 	"io"
 	"os"
 	"path"
+	"strconv"
 
 	"github.com/rs/zerolog"
 	"github.com/rs/zerolog/log"
@@ -54,6 +55,18 @@ func Configure(config Config) *Logger {
 		writers = append(writers, newRollingFile(config))
 	}
 	mw := io.MultiWriter(writers...)
+
+	zerolog.CallerMarshalFunc = func(file string, line int) string {
+		short := file
+		for i := len(file) - 1; i > 0; i-- {
+			if file[i] == '/' {
+				short = file[i+1:]
+				break
+			}
+		}
+		file = short
+		return file + ":" + strconv.Itoa(line)
+	}
 
 	// zerolog.SetGlobalLevel(zerolog.DebugLevel)
 	logger := zerolog.New(mw).With().Caller().Timestamp().Logger()
