@@ -33,8 +33,8 @@ func WriteDataIntoXLSX(f *excelize.File, sheetTitle string, header *[]interface{
 	// f.SetColStyle("Sheet1", "F", style)
 }
 
-func SaveXLSX(f *excelize.File, fileName string) string {
-	path := fmt.Sprintf("./Reports/%s", fileName)
+func SaveXLSX(f *excelize.File, filePath, fileName string) string {
+	path := fmt.Sprintf("%s/%s", filePath, fileName)
 	if err := f.SaveAs(path); err != nil {
 		fmt.Println(err)
 	}
