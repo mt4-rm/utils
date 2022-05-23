@@ -13,9 +13,10 @@ import (
 
 // Configuration for logging
 type Config struct {
+	// Enable Debug mode
+	Debug bool
 	// Enable console logging
 	ConsoleLoggingEnabled bool
-
 	// EncodeLogsAsJson makes the log framework log JSON
 	EncodeLogsAsJson bool
 	// FileLoggingEnabled makes the framework log to a file
@@ -68,7 +69,11 @@ func Configure(config Config) *Logger {
 		return file + ":" + strconv.Itoa(line)
 	}
 
-	// zerolog.SetGlobalLevel(zerolog.DebugLevel)
+	// Set Log Level
+	zerolog.SetGlobalLevel(zerolog.InfoLevel)
+	if config.Debug {
+		zerolog.SetGlobalLevel(zerolog.DebugLevel)
+	}
 	logger := zerolog.New(mw).With().Caller().Timestamp().Logger()
 
 	logger.Info().
