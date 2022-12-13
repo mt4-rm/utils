@@ -5,6 +5,7 @@ import (
 	"os"
 	"path"
 	"strconv"
+	"time"
 
 	"github.com/rs/zerolog"
 	"github.com/rs/zerolog/log"
@@ -50,7 +51,7 @@ func Configure(config Config) *Logger {
 	var writers []io.Writer
 
 	if config.ConsoleLoggingEnabled {
-		writers = append(writers, zerolog.ConsoleWriter{Out: os.Stderr})
+		writers = append(writers, zerolog.ConsoleWriter{Out: os.Stderr, TimeFormat: time.RFC3339})
 	}
 	if config.FileLoggingEnabled {
 		writers = append(writers, newRollingFile(config))
